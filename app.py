@@ -30,7 +30,7 @@ jobs_per_company_df = df.company.value_counts(ascending=True).rename_axis('Compa
 
 st.title("Web3.careers Data visualization")
 st.sidebar.title("Select the amount of jobs")
-jb_counts = st.sidebar.slider('Number of jobs', jobs_per_company_df.counts.min(), jobs_per_company_df.counts.max(), jobs_per_company_df.counts.min())
+jb_counts = st.sidebar.slider('Number of jobs', int(jobs_per_company_df.counts.min()), int(jobs_per_company_df.counts.max()), int(jobs_per_company_df.counts.min()))
 jobs_per_company_df.rename(columns = {'counts':'Number of jobs'}, inplace = True)
 jobs_per_company_df.rename(columns = {'Companies':'Company'}, inplace = True)
 
