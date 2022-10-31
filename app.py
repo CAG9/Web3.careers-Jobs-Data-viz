@@ -1,6 +1,4 @@
 # Import Libraries
-import requests
-import pprint
 import pandas as pd
 from collections import Counter
 import streamlit as st
@@ -8,7 +6,6 @@ import plotly.express as px
 import numpy as np
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-pp = pprint.PrettyPrinter()
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
