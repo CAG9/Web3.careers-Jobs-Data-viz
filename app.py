@@ -31,15 +31,15 @@ count_tags_df = count_tags_df.iloc[0:10,:].reset_index()
 
 jobs_per_company_df = df.company.value_counts(ascending=True).rename_axis('Companies').reset_index(name='counts')
 
-st.title(" Web3.careers data")
-st.sidebar.title("Edit the charts")
+st.title("Web3.careers Data visualization")
+st.sidebar.title("Select the amount of jobs")
 jb_counts = st.sidebar.slider('Number of jobs', jobs_per_company_df.counts.min(), jobs_per_company_df.counts.max(), jobs_per_company_df.counts.min())
 jobs_per_company_df.rename(columns = {'counts':'Number of jobs'}, inplace = True)
-
+jobs_per_company_df.rename(columns = {'Companies':'Company'}, inplace = True)
 
 jobs_per_company_df_2 = jobs_per_company_df[jobs_per_company_df['Number of jobs']>=jb_counts]
-st.markdown("## Number of jobs per companies")
-fig = px.bar(jobs_per_company_df_2, x='Companies', y='Number of jobs',color='Number of jobs',color_continuous_scale=["#0ba0f7", "#1740fa","#3317ad"])
+st.markdown("## Number of jobs by company")
+fig = px.bar(jobs_per_company_df_2, x='Company', y='Number of jobs',color='Number of jobs',color_continuous_scale=["#0ba0f7", "#1740fa","#3317ad"])
 fig.update_layout(width=900,height=650)
 st.plotly_chart(fig)
 
@@ -49,10 +49,15 @@ count_tags_df.sort_values(by='count', ascending=True, inplace=True)
 count_tags_df.rename(columns = {'index':'Tags'}, inplace = True)
 count_tags_df.rename(columns = {'count':'Frequency'}, inplace = True)
 
+#tags_count = st.sidebar.slider('Number of tags', count_tags_df.Frequency.min(), count_tags_df.Frequency.max(), 10)
+
 fig2 = px.bar(count_tags_df, x="Frequency", y="Tags", orientation='h',color='Frequency')
 st.plotly_chart(fig2)
 
-st.markdown('## World Cloud')
+
+
+
+st.markdown('## The most common words in the job description')
 
 cloud_text = ""
 for index, row in df.iterrows():
