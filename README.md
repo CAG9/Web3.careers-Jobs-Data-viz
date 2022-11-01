@@ -11,8 +11,6 @@ MIT License
 - Pandas
 - Numpy
 - Wordcloud
-- Requests
-- Pprint
 - Collections
 - Plotly
 - Matplotlib
